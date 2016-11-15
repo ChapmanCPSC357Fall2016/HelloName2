@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+	
+	@IBOutlet var viewCollection: [UIView]!
+	
 	@IBOutlet weak var helloLabel: UILabel!
 	@IBOutlet weak var nameTextField: UITextField!
 	
@@ -18,10 +20,23 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		self.viewCollection.forEach { (view) in
+			
+			view.alpha = 0
+		}
+		
 		print("View did load")
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
+		
+		UIView.animate(withDuration: 1.5) { 
+			
+			self.viewCollection.forEach({ (view) in
+				
+				view.alpha = 1
+			})
+		}
 		
 		print("View did appear")
 	}
